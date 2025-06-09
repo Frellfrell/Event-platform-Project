@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Платформа мероприятий</title>
+  <!-- Подключение шрифта Roboto с Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <!-- Подключение иконок Material Symbols Rounded -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+  <link rel="stylesheet" href="newstyleEventprP.css" />
+</head>
+<body>
+  <div class="macbook-container"> 
+<header class="header">
+      <div class="flex-header">
+        <!-- Левая часть: логотип -->
+      <div class="left-side">
+      <div class="logo">
+        <a href="indexEventprP1.html">
+        <img src="meetup.png" alt="meetup-logo"></img>
+        </a>
+      </div>
+
+      
+
+<form class="search-form"> 
+      <div class="search-icon">
+        <img src="search.png" alt="Search" class="input-icon"></img>
+      
+
+      <input type="text" placeholder="Search Events" class="search-input" />
+
+      <img src="location.png" alt="Location" class="location-icon-inline" /><!--для фдаптива-->
+</div>
+      <!-- Поиск select -->
+      <div class="location-select">
+        <div class="selected-location">
+          
+          <span class="selected-text">Mountain View,CA</span>
+          <img src="location.png" alt="" class="location-icon"></img>
+    
+        </div>
+        
+        <div class="location-options">
+          <div class="location-option">New York</div>
+          <div class="location-option">Los Angeles</div>
+          <div class="location-option">San Francisco</div>
+        </div>
+</div> 
+</form>
+</div>
+       <!-- Правая часть: язык и кнопки -->
+        <div class="user-controls">
+      <button class="language-button">
+        <img src="world.png" alt=""></img>
+        <span>English</span>
+      </button>
+
+      <span class="login">Log in</span>
+      <div class="signup-box"><img src="sing_up.png" alt=""></img></div>
+        </div>
+        
+    </div>
+    </header>
+
+
+<!--Macbuk2Functional menu-->
+    <main class="main-container">
+      <div class="left-column">
+  <section class="events-near-functional">
+    <h2 class="events-heading">Events near New York, NY</h2>
+
+    <button class="search-events-btn">
+        <img src="MacBooK2/Button - Search.png" alt="Button - Search"></img>
+    </button>
+
+    <div class="filters-wrapper">
+  <!-- Type Filter -->
+  <div class="filter-combo" id="typeFilter">
+    <span class="selected-option">Any type</span>
+    <img src="MacBooK2/SVG.png" alt="Arrow Icon" class="dropdown-icon" />
+    <ul class="dropdown-options hidden">
+    <li data-value="">Any type</li>
+    <li data-value="online">Online</li>
+    <li data-value="offline">Offline</li>
+    
+  </ul>
+    </div>
+
+  <!-- Date Filter -->
+  <div class="filter-combo" id="dateFilter">
+    <span class="selected-option">Any date</span>
+    <img src="MacBooK2/SVG.png" alt="Arrow Icon" class="dropdown-icon" />
+    <ul class="dropdown-options hidden">
+    
+    <li data-value="">Any Date</li>
+    <li data-value="2024-03-13">Mar 13</li>
+    <li data-value="2024-03-14">Mar 14</li>
+    <li data-value="2024-03-16">Mar 16</li>
+    <li data-value="2024-03-23">Mar 23</li>
+    <li data-value="2024-03-30">Mar 30</li>
+    </ul>
+  </div>
+  
+  <!-- Distance Filter -->
+  <div class="filter-combo" id="distanceFilter">
+    <span class="selected-option">Any distance</span>
+    <img src="MacBooK2/SVG.png" alt="Arrow Icon" class="dropdown-icon" />
+    <ul class="dropdown-options hidden">
+     
+    <li data-value="">Any distance</li>
+    <li data-value="5">5 km</li>
+    <li data-value="10">10 km</li>
+    <li data-value="15">15 km</li>
+    <li data-value="25">25 km</li>
+    <li data-value="50">50 km</li>
+    <li data-value="75">75 km</li>
+    <li data-value="100">100 km</li>
+   
+  </ul>
+    </div>
+
+  <!-- Category Filter -->
+  <div class="filter-combo" id="categoryFilter">
+    <span class="selected-option">Any category</span>
+    <img src="MacBooK2/SVG.png" alt="Arrow Icon" class="dropdown-icon" />
+    <ul class="dropdown-options hidden">
+    
+    <li data-value="">Any category</li>
+    <li data-value="Social Activities">Social Activities</li>
+    <li data-value="Hobbies and Passions">Hobbies and Passions</li>
+    <li data-value="Health and Wellbeing">Health and Wellbeing</li>
+    <li data-value="Business">Business</li>
+    <li data-value="Technology">Technology</li>
+   
+  </ul>
+  </div>
+</div>
+<div class="filters-screenshot">
+  <img src="MacBooK2/filter-placeholder.png" alt="Filters Screenshot">
+</div>
+ </section>
+
+     <div class="events-list">
+      <!-- Здеc карточки мероприятий -->
+    </div>
+ </div>
+
+<aside class="map-section">
+    <h3 class="map-title">Find events near</h3>
+    <h3 class="map-city">New York, NY</h3>
+    
+    <div class="map-placeholder">
+       <img src="MacBooK2/map.png" alt="map"/> 
+    
+    <button class="map-button">
+        <img src="MacBooK2/Button.png" alt="Button"/>
+    </button>
+    <button class="map-close-button">
+        <img src="MacBooK2/krestik.png" alt="krestik"/> 
+    </button>
+    </div>
+  </aside>
+
+</main>
+
+
+   
+    <!--  контент footer -->
+    <footer class="footer-section">
+      <div class="footer-container">
+    
+    <!-- Верхняя часть: логотип и Get Started -->
+    <div class="footer-top">
+      <div class="footer-logo">
+        <span>Create your own Meetup group.</span>
+      </div>
+      <div class="footer-get-started">
+        <img src="footer/get-started.png" alt="" />
+      </div>
+    </div>
+
+    <!-- Навигационные блоки -->
+    <div class="footer-nav">
+      <ul class="footer-column">
+        <li>Your Account</li>
+        <li>Sign up</li>
+        <li>Log in</li>
+        <li>Help</li>
+        <li>Become an Affiliate</li>
+      </ul>
+      <ul class="footer-column">
+        <li>Discover</li>
+        <li>Groups</li>
+        <li>Calendar</li>
+        <li>Topics</li>
+        <li>Cities</li>
+        <li>Online Events</li>
+        <li>Local Guides</li>
+        <li>Make Friends</li>
+      </ul>
+      <ul class="footer-column">
+        <li>Meetup</li>
+        <li>About</li>
+        <li>Blog</li>
+        <li>Meetup Pro</li>
+        <li>Careers</li>
+        <li>Apps</li>
+        <li>Podcast</li>
+      </ul>
+    </div>
+
+    <!-- Блок с иконками и стор -->
+    <div class="footer-social">
+      <div class="footer-follow">
+        <h3>Follow us</h3>
+        <div class="footer-icons">
+          <img src="footer/Facebook.png" alt="icon">
+          <img src="footer/Twieter.png" alt="icon">
+          <img src="footer/YouTube .png" alt="icon">
+          <img src="footer/Instagram .png" alt="icon">
+          <img src="footer/TikTok .png" alt="icon">
+        </div>
+      </div>
+      <div class="footer-stores">
+        <span class="store-btn">
+          <img src="footer/download.png" alt="Google Play">
+        </span>
+        <span class="store-btn">
+          <img src="footer/App Store.png" alt="App Store">
+        </span>
+      </div>
+    </div>
+
+    <!-- Нижняя строка -->
+    <div class="footer-bottom">
+      <span> © 2024 Meetup</span>
+      <div class="footer-links">
+        <a href="#">Terms of Use</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Do Not Sell or Share My Personal Data</a>
+        <a href="#">Cookies</a>
+        <a href="#">Help</a>
+      </div>
+    </div>
+  </div>
+    </footer>
+  </div>
+
+  <script src="scriptEventprP2.js"></script>
+</body>
+</html>
+
+

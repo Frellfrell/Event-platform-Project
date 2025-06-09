@@ -1,0 +1,1713 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.macbook-container {
+  width: 100%;
+  max-width: 1512px;
+  margin: 0 auto;
+}
+.header {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  flex-wrap: nowrap; 
+  background: #fff;
+   width: 100%;
+}
+
+/* Левая часть - лого и форма поиска */
+
+.flex-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.left-side {
+  display: flex;
+  align-items: center;
+  flex: 1; /* <-- занимает всё, что между логотипом и user-controls */
+  gap: 1rem;
+}
+/* Логотип */
+
+.logo img {
+  height: 2.5rem; /* 40px */
+  width: auto;
+  display: block;
+}
+
+/* Форма поиска */
+
+.search-form {
+  display: flex;
+ 
+  align-items: center;
+   max-width: 700px; /* ограничим ширину формы, чтобы .user-controls не уезжал */
+}
+/* Иконка поиска */
+
+.search-icon {
+  position: relative; 
+  width: 16rem;
+  height: 2.625rem; /* 42px */
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem 0 0 0.5rem;
+  background-color: #fff;
+  padding-left: 2.625rem; /* под иконку */
+  box-sizing: border-box;
+}
+
+/* Иконка поиска внутри input */
+.input-icon {
+  position: absolute;
+  left: 0.75rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Сам input */
+.search-input {
+  border: none;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  outline: none;
+  background: transparent;
+  padding-right: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Правая часть — выбор локации */
+.location-select {
+  position: relative;
+  width: 18rem;
+  height: 2.625rem;
+  border: 1px solid #ccc;
+  border-radius: 0 0.5rem 0.5rem 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+}
+
+/* Внутренний контейнер */
+.selected-location {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+   
+}
+
+/* Название города */
+.selected-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+
+/* Иконка location (42px в rem) */
+.location-icon {
+  width: 2.625rem;
+  height: 2.625rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  
+}
+
+/* Выпадающий список */
+.location-options {
+  position: absolute;
+  top: calc(100% + 0.5rem); /* Чуть ниже основного блока */;
+  width: 100%; 
+  padding: 0.5rem 1rem;
+  display: none; /* Скрыт по умолчанию */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  z-index: 10;
+  transition: all 0.2s ease-in-out;
+}
+.location-option {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition:  0.2s;
+    font-size: 0.95rem;
+}
+
+.location-option:hover {
+    background-color: #f0f0f0;
+}
+
+/* Активный список (добавляется класс open через JS) */
+.location-select.open .location-options {
+  display: block;
+}
+
+/* Правая часть - кнопки и язык */
+
+.user-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+}
+
+/* Кнопка языка */
+
+.language-button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.language-button img {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Логин */
+
+.login {
+  font-size: 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Sign up */
+
+.signup-box img {
+  height: 2rem;
+  cursor: pointer;
+}
+
+.location-icon-inline {
+  display: none;  
+}
+
+/* === Адаптив === */
+@media (max-width: 1024px) {
+.location-select {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+.location-select {
+    display: none;
+  }
+}
+@media (max-width: 430px) {
+
+  /* Лого и user-controls в одну строку, по краям */
+   .flex-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .left-side {
+    margin-top: -2.7rem;
+    flex-direction: column;
+    order: 2;
+    align-items: stretch;
+    width: 100%;
+  }
+
+
+  .logo img {
+    height: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .user-controls {
+   align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    white-space: nowrap; /* предотвращает перенос текста */
+    padding-left: 12rem;
+  }
+
+  .login {
+    font-size: 0.95rem;
+  }
+
+  .signup-box img {
+    height: 1.8rem;
+  }
+
+  /* Search-form располагается под .flex-header, занимает всю ширину */
+  .search-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Search icon блок — на всю ширину */
+  .search-icon {
+    width: 100%;
+    padding-left: 2.625rem;
+    height: 2.625rem;
+    border-radius: 0.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+
+  .input-icon {
+    left: 0.75rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .search-input {
+    border: none;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
+    box-sizing: border-box;
+  }
+
+  /* Location icon inline — показывается только на мобилке */
+  .location-icon-inline {
+    display: inline;
+    width: 2.6rem;
+    height: 2.6rem;
+    margin-left: 0.5rem;
+  }
+
+  /* Скрыть выпадающий селект Location на мобилке */
+  .location-select {
+    display: none;
+  }
+
+  /* Чтобы dropdown случайно не проявлялся */
+  .location-options {
+    display: none !important;
+  }
+
+  /* Минимальная адаптация шрифта */
+  .selected-text,
+  .language-button span {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* Основные секции */
+.main {
+  width: 100%;
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.mb2 {
+  width: 100%;
+  max-width: 1196px; /* как в фигме */
+  margin: 0 auto;
+  padding: 6rem 0.5rem; /* добавим паддинги */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  gap: 2rem;
+}
+
+.mb2-text {
+  flex: 1;
+  max-width: 600px;
+  padding-left: 3rem; /* имитация left: 362px */
+}
+
+.mb2-heading {
+  font-size: 2.5rem; /* примерно 40px */
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.mb2-subtext {
+  font-size: 1.125rem; /* ~18px */
+  line-height: 1.5;
+  margin-bottom: 2rem;
+  max-width: 608px;
+}
+
+.mb2-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem; /* радиус 8px */
+  background-color: #00798a;
+  color: #fff;
+  text-decoration: none;
+}
+
+.mb2-image-wrapper {
+  flex: 0 0 auto;
+  padding-right: 1.5rem;
+ 
+}
+
+.mb2-image {
+  max-width: 379px;
+  height: auto;
+  object-fit: contain;
+}
+@media (max-width: 430px) {
+  .mb2 {
+    flex-direction: column;
+    padding: 3rem 0.025rem;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .mb2-text {
+    padding-left: 0;
+    max-width: 100%;
+  }
+
+  .mb2-heading {
+    font-size: 1.75rem;
+  }
+
+  .mb2-subtext {
+    font-size: 1rem;
+  }
+
+  .mb2-button {
+    font-size: 0.9rem;
+  }
+
+  .mb2-image-wrapper {
+    padding-right: 0;
+    margin-top: 2rem;
+  }
+
+  .mb2-image {
+    max-width: 80%;
+  }
+}
+@media (max-width: 393px) {
+  .mb2 {
+    flex-direction: column;
+    padding: 2.5rem 0.05rem;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .mb2-text {
+    padding-left: 0;
+    max-width: 100%;
+  }
+
+  .mb2-heading {
+    font-size: 1.625rem; /* чуть меньше */
+    line-height: 1.3;
+  }
+
+  .mb2-subtext {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .mb2-button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .mb2-image-wrapper {
+    padding-right: 0;
+    margin-top: 2rem;
+  }
+
+  .mb2-image {
+    max-width: 85%;
+    height: auto;
+  }
+}
+ /*Контейнер карточек */
+.events-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.events-header,
+.sub-events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+  
+.events-title-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.events-heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.location-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #00798A;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background-color: #97CAD11F;
+
+}
+.sub-events-header h2 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.loc-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.see-all-events,
+.see-all-link {
+  font-size: 1rem;
+  color: #00798A;
+  text-decoration: none;
+
+}
+
+.events-grid,
+ .sub-events-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+
+.even-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 100%;
+}
+.even-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1; /* чтобы занимало всё доступное пространство */
+}
+.even-image {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  height: 160px;
+}
+
+.even-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+ }
+
+.even-category {
+  color: #666;
+  font-size: 0.9rem;
+  gap: 1rem;
+}
+
+.even-info {
+  display: flex;
+  flex-direction: column;
+ gap: 1rem;
+
+}
+
+.even-time,
+.event-details {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  
+}
+
+.even-time img,
+.event-details img {
+  width: 16px;
+  height: 16px;
+}
+@media (max-width: 1024px) {
+.events-section {
+   padding: 2rem 0.5rem; /* добавим отступы */
+  }
+.events-grid,
+  .sub-events-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 в ряд */
+  }
+  .event-details {
+    display: none;
+  }
+  .see-all-events {
+    display: none; /* скрыть на мобильных */
+  }
+}
+
+@media (max-width: 768px) {
+  .see-all-events {
+    display: none; /* скрыть на мобильных */
+  }
+  .see-all-link {
+    display: none; /* скрыть на мобильных */
+  }
+}
+@media (max-width: 430px) {
+  .events-section {
+   padding: 2rem 0.5rem; /* добавим отступы */
+  }
+
+  .events-grid,
+  .sub-events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .events-grid .even-card:nth-child(n+4),
+  .sub-events-grid .even-card:nth-child(n+4) {
+    display: none;
+  }
+
+  .events-grid .even-card,
+  .sub-events-grid .even-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .even-card { 
+   padding: 1rem 1rem 1rem 0rem;
+  }
+  .even-image {
+    width: 120px;
+    height: 100px;
+    flex-shrink: 0;
+    
+  }
+
+
+  /* Блок с текстом справа от картинки */
+   .events-grid .even-text,
+  .sub-events-grid .even-text {
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
+  }
+  .even-title {
+    font-size: 0.613rem;       /* ≈ 9.81px */
+    line-height: 0.919rem;     /* ≈ 14.71px */
+  }
+  .even-category,
+   .even-time,
+   .event-details {
+    font-size: 0.5rem;         /* ≈ 8px */
+    line-height: 0.75rem;      /* ≈ 12px */
+  }
+
+   .even-title,
+  .even-category,
+  .even-time {
+    display: block;
+  }
+  .even-info{
+    display: flex;
+    flex-direction: column;
+  
+  }
+  .even-time img,
+.event-details img {
+  display: none;
+}
+
+  .events-grid .even-time,
+   .sub-events-grid .even-time {
+    order: 1;
+  }
+  .events-grid .even-title,
+  .sub-events-grid .even-title {
+    order: 2;
+  }
+  .events-grid .even-category,
+  .sub-events-grid .even-category {
+    order: 3;
+    margin-top: 0.25rem;
+  }
+
+  /* Скрываем детали (event-details) */
+  .events-grid .event-details,
+  .sub-events-grid .event-details {
+    display: none;
+  }
+  
+.see-all-events {
+    display: none; /* скрыть на мобильных */
+  }
+  .see-all-link {
+    display: none; /* скрыть на мобильных */
+  }
+} 
+
+@media (max-width: 393px) {
+  .events-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .events-title-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .even-card {
+    padding: 1rem 0.75rem;
+  }
+  .see-all-link {
+    display: none; /* скрыть на мобильных */
+  }
+  .see-all-events {
+    display: none; /* скрыть на мобильных */
+  }
+}
+
+
+.main-next-block {
+   max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* CTA SECTION */
+.cta-section {
+  display: flex;
+  max-height: 15rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  background-color: #f5f5f5;
+   flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.cta-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  flex: 1;
+  gap: 1rem;
+}
+
+.cta-heading {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  margin-bottom: 1rem;
+  text-align: left;
+  width: 100%;
+}
+
+.cta-paragraph {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+
+.cta-link {
+  font-weight: bold;
+  max-width: 192px;
+  height: auto;
+  border-radius: 8px;
+}
+
+
+.cta-image {
+  max-width: 380px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;/* чтобы картинка не искажалась */
+  position: relative;
+    top: -5rem;
+ 
+}
+@media (max-width: 1024px) {
+
+  .cta-link {
+    display: block;
+    margin-top: -1rem;
+  }
+}
+@media (max-width: 767px) {
+  .cta-image {
+    top: 0;
+  }
+  .cta-link {
+    
+    display: block;
+    margin-top: -1rem;
+  }
+}
+@media (max-width: 430px) {
+  .cta-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+     max-height: none;
+  }
+
+  .cta-heading {
+    order: 1; /* Заголовок первым */
+    width: 100%;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .cta-image {
+    order: 2; /* Картинка второй */
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+    position: relative;
+    top: 0; /* убираем смещение */
+  }
+
+  .cta-content {
+    order: 3; /* Весь текстовый блок последним */
+    width: 100%;
+    padding: 0;
+  }
+.cta-paragraph {
+    text-align: justify;
+    width: 100%;
+  }
+  
+  .cta-link {
+    margin: 0  auto;
+  }
+}
+/* КАТЕГОРИИ КАРТОЧЕК (8 в РЯД) */
+.card-row {
+  display: flex;
+  flex-wrap: nowrap; /* чтобы карточки стояли в одну строку */
+  overflow-x: auto;  /* прокрутка, если не помещаются */
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scrollbar-width: none; /* скрыть скролл для Firefox */
+}
+
+.card-row::-webkit-scrollbar {
+  display: none; /* скрыть скролл для Chrome */
+}
+
+/* === 1. Карточки категорий (8 штук) === */
+.category-section .card {
+  flex: 0 0 auto;
+  width: 8.2rem; 
+  height: 7rem;
+  border-radius: 1rem;
+  background-color: #97CAD114;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+  margin-top: 2rem;
+}
+.card-title {
+  white-space: normal;  /* разрешить перенос */
+  text-align: center;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.2rem;  /* можно подогнать */
+}
+
+.category-section .card img {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.category-section .card p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+
+/* === 2. Карточки городов (5 штук) === */
+.popular-cities-section .card {
+  flex: 0 0 13.8rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  
+}
+
+.popular-cities-section {
+ margin: 3rem 0rem 0;
+}
+  
+.cities-description {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.popular-cities-section .card img {
+ width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.popular-cities-section .card h2 {
+  margin-bottom: 1rem;
+}
+.popular-cities-section .card h3 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 1.5rem;
+  line-height: 1.7rem;
+}
+
+@media (max-width: 1024px) {
+  .category-section .card-row {
+    flex-wrap: wrap;          /* переходим на перенос строк */
+    justify-content: space-between;
+    overflow-x: unset;        /* убираем скролл */
+  }
+  
+  .popular-cities-section .card-row {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow-x: unset;
+  }
+  /*Скрыть 5-ю карточку */
+  .popular-cities-section .card:nth-child(n+5) {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .category-section .card-row {
+    flex-wrap: wrap;          /* переходим на перенос строк */
+    justify-content: space-between;
+    overflow-x: unset;        /* убираем скролл */
+  }
+  
+  .popular-cities-section .card-row {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow-x: unset;
+  }
+  /*Скрыть 5-ю карточку */
+  .popular-cities-section .card:nth-child(n+5) {
+    display: none;
+  }
+  .popular-cities-section .card {
+    flex: 0 1 calc(50% - 1rem); /* две карточки в строку */
+    
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .category-section {
+    margin-top: -4.5rem; 
+  }
+  .category-section .card-row {
+    flex-wrap: wrap;          /* переходим на перенос строк */
+    justify-content: space-between;
+    overflow-x: unset;        /* убираем скролл */
+   padding: 0 3rem;
+  }
+
+  .category-section .card {
+    width: calc(50% - 0.5rem);  /* две карточки в строку */
+    margin-top: 1rem;
+     border-radius: 0.5rem;
+  }
+
+  /* === 2. Города (Popular Cities) === */
+  .popular-cities-section .card-row {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow-x: unset;
+  }
+  .popular-cities-section .card h3 {
+    font-size: 1rem;
+  }
+  .popular-cities-section .card {
+    flex: 0 0 calc(50% - 0.5rem); /* две карточки в строку */
+    max-width: calc(50% - 0.5rem);
+    padding: 0.5rem;
+  }
+
+  /* Скрыть 5-ю карточку */
+  .popular-cities-section .card:nth-child(n+5) {
+    display: none;
+  }
+}
+/* HOW MEETING WORKS */
+.how-it-works-section {
+  margin-top: -4.8rem;
+}
+.how-grid {
+  display: flex;
+  gap: 2.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 2rem;
+}
+.how-card {
+  flex: 1 1 48%;
+  display: flex;
+  background-color: #97CAD114;
+  border-radius: 8px;
+  align-items: flex-start;
+  gap: 2.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.how-icon {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+.how-card img {
+  width: 2.6rem;
+  height: 2.6rem;
+  flex-shrink: 0;
+}
+
+.how-text h3 {
+  margin: 1.1rem;
+  font-size: 1.1rem;
+}
+
+.how-text p {
+  margin: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+}
+.how-p {
+  color: #00798A;
+}
+@media (max-width: 430px) {
+  .how-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .how-card {
+    width: 100%;
+    max-width: 398px;
+    box-sizing: border-box;
+    padding: 1rem 0;
+  }
+
+  .how-card img {
+   width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .how-text h3 {
+    font-size: 1.125rem;
+    margin: 0.5rem 0;
+  }
+
+  .how-text p {
+    margin: 0.5rem 0;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .how-p {
+    margin-top: 1rem;
+    color: #00798a;
+    font-weight: bold;
+  }
+}
+/* ФИНАЛЬНЫЕ КАРТОЧКИ (3 шт) */
+.final-card-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+ margin-top: 2rem;
+ margin-bottom: 3rem;
+}
+.section-title {
+  margin-top: 5rem;
+}
+.final-card {
+ flex : 1 1 calc(33.333% - 1rem);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+   box-sizing: border-box;
+ } 
+
+.final-card img {
+  width: 100%;
+  object-fit: cover; /* чтобы картинка не искажалась */
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
+.final-title {
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  max-height: 3.2rem; /* ограничим в 2 строки */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.final-description {
+  font-size: 1rem;
+  line-height: 1.6rem;
+  margin-bottom: 1.5rem;
+  max-height: 8rem; /* это примерно 5 строк */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.final-subtext {
+ color: #00798A;
+ margin-top: auto;
+}
+
+/* АДАПТАЦИЯ ПОД МОБИЛКУ */
+@media (max-width: 1400px) {
+  .final-card-grid {
+    gap: 1.5rem;
+  }
+}
+@media (max-width: 1024px) {
+   
+  .final-card {
+    flex: 1 1 calc(50% - 1rem);
+  }
+  
+}
+@media (max-width: 768px) {
+.final-card {
+    flex: 1 1 100%;
+  }
+  
+  .final-content {
+    display: inline-block;
+    text-align: left;
+  }
+
+  .final-description {
+    display: inline-block;
+    text-align: left;
+  }
+}
+
+ 
+@media (max-width: 430px) {
+ .section-subtext {
+     display: none; /* скрыть на мобильных */
+}
+.section-title {
+  margin: 0;
+}
+  .final-title {
+    display: inline-block;
+    font-size: 1.1rem;
+    line-height: 1.4rem;
+  }
+
+  .final-description {
+    max-width: 100%;
+    text-align: left;
+  }
+}
+
+
+ @media (max-width: 393px) {
+ .final-card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+.section-title {
+  margin: 0;
+}
+  
+  .final-card {
+    width: 90%;
+  }
+  .section-subtext {
+     display: none; /* скрыть на мобильных */
+  }
+}
+
+
+
+.footer-section {
+  background-color: #212121;
+  padding: 2rem 0;
+}
+
+.footer-container {
+  max-width: 70rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.2rem;
+}
+
+/* Верх: логотип + кнопка */
+.footer-top {
+  display: flex;
+  align-items: center;
+  color: #F6F7F8;
+ flex-wrap: wrap; /* чтобы элементы переносились при сужении */
+}
+
+.footer-logo span {
+  font-weight: bold;
+  margin-right: 1rem;
+  color: #F6F7F8;
+}
+
+.footer-get-started {
+  padding: 0.5rem 1rem;
+}
+
+/* Навигационные колонки */
+.footer-nav {
+  display: flex;
+  justify-content: space-between; /* пробел между колонками */
+  width: 100%;
+  flex-wrap: nowrap;
+  max-width: 70.5rem; /* 1128px = 70.5rem при 1rem = 16px */
+  padding: 2rem 0;
+  border-top: 1px solid #707070;
+}
+
+.footer-column {
+ flex: 1 1 0;
+  list-style: none;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #F6F7F8;
+}
+.footer-column li {
+  font-size: 0.8rem;
+  line-height: 1rem;
+  margin-bottom: 0.5rem;
+  word-break: break-word;
+}
+.footer-column li:first-child {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #F6F7F8;
+}
+
+/* Социальные и сторы */
+.footer-social {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  color: #F6F7F8;
+}
+
+.footer-follow h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #F6F7F8;
+}
+
+.footer-icons img {
+  height: 2rem;
+  margin-right: 1.8rem;
+}
+
+.footer-stores .store-btn {
+ margin-right: 1rem;
+  font-size: 0.875rem;
+  color: #F6F7F8;
+}
+
+/* Нижняя часть футера */
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  padding-top: 1rem;
+  color: #ffffff;
+}
+
+.footer-links a {
+  margin-left: 2.5rem;
+  color: #C5C4C4;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+@media (max-width: 393px) {
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .footer-nav {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .footer-social {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-get-started img,
+  .footer-stores img {
+    height: 2.25rem;
+  }
+}
+@media (max-width: 430px) {
+  
+  .footer-stores,
+  .footer-links {
+    display: none !important;
+  }
+  .footer-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .footer-column {
+    flex: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.75rem;
+    color: #fff;
+  }
+
+  .footer-column li:first-child {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Нижняя строка — только span */
+  .footer-bottom {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem 0;
+  }
+
+  .footer-bottom span {
+    font-size: 0.75rem;
+    color: #fff;
+  }
+}
+/*Macbuk2Functional menu*/
+.main-container {
+    display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1512px;
+  margin: 0 auto;
+  padding: 2.87rem 0 2.5rem 8.31rem;
+ 
+}
+
+.left-column {
+  max-width: 762px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.events-near-functional {
+  
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+}
+
+.events-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.search-events-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  padding: 0;
+}
+
+.filters-wrapper {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Стили фильтров */
+.filter-combo {
+  position: relative;
+  background: #f1f1f1;
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+.filters-screenshot {
+  display: none;
+}
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  background: white;
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 0;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+   transition:  0.2s;
+    list-style: none;
+}
+
+.dropdown-options li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.dropdown-options li:hover {
+  background: #eee;
+}
+.hidden {
+  display: none;
+}
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.86rem;
+  width: 50rem; 
+  
+}
+/* Карточка мероприятия */
+.event-card {
+  flex-direction: row;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  max-width: 100%;
+  border-top: 0.125rem solid #d9d9d9;
+}
+
+.event-img {
+  width: 10rem;
+  height: 6rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+   flex-shrink: 0;
+}
+.event-info {
+ display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0.5rem 0;
+
+}
+
+.event-meta {
+  font-size: 0.875rem;
+  color: #666;
+}
+.event-type {
+  display: none;
+}
+.event-attendees {
+  font-size: 0.8rem;
+  margin-top: 3rem;
+}
+/* Карта справа */
+.map-section {
+  max-width: 384px;
+  position: sticky;
+  height: fit-content;
+  margin-right: 6rem;
+}
+.map-placeholder {
+  position: relative;
+}
+.map-placeholder img {
+ position: relative;
+  
+}
+.map-title{
+  font-size: 0.7rem;
+ 
+}
+.map-city {
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.map-button,
+.map-close-button {
+  position: absolute;
+  border: none;
+  cursor: pointer;
+  
+}
+
+.map-button {
+  top: 50%;
+  left: 50%;
+  background: none;
+  transform: translate(-50%, -50%);
+}
+
+.map-close-button {
+  top: 0.6875rem;
+  right: 0.9375rem;
+  background: none;
+}
+
+
+.map-close-button img {
+  width: 1rem;
+  height: 1rem;
+}
+@media (max-width: 1400px) {
+ .map-section {
+    display: none;
+  }
+}
+@media (max-width: 1024px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1.5rem;
+  }
+
+  .events-list {
+    width: 100%;
+  }
+  .event-img {
+    width: 8rem;
+    height: 4.5rem;
+  }
+
+  .map-section {
+    display: none;
+  }
+}
+
+
+/* ≤ 768px: мобильные, iPad mini и т.п. */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 2rem 1rem;
+  }
+  .filters-wrapper {
+    gap: 0.75rem;
+  }
+.filters-screenshot {
+    display: block;
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .filters-screenshot img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    display: block;
+  }
+  .event-attendees {
+    margin-top: 1rem;
+  }
+
+  .event-card {
+    padding-top: 0.5rem;
+  }
+
+  .event-meta {
+    font-size: 0.8rem;
+  }
+
+  .map-title {
+    font-size: 0.6rem;
+  }
+
+  .map-city {
+    font-size: 1rem;
+  }
+  /* Скрыть один фильтр — Any Date */
+  #dateFilter {
+    display: none;
+  }
+  .map-section {
+    display: none;
+  }
+   /* Ограничиваем количество карточек: показываем только 3 */
+  .event-card:nth-child(n+4) {
+    display: none;
+  }
+
+  /* Добавляем отступ снизу */
+  .events-list {
+    margin-bottom: 1.11rem;
+  }
+}
+
+/* ≤ 430px */
+@media (max-width: 430px) {
+
+  .main-container {
+    padding: 0.5rem 1rem;
+  }
+
+  .left-column {
+    gap: 1rem;
+  }
+  .filter-combo {
+    padding: 0.2rem 0.5rem;
+    
+  }
+.filters-screenshot {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  .filters-screenshot img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  .event-title {
+    font-size: 0.613rem;
+    line-height: 0.92rem;
+  }
+  .event-meta,
+  .event-attendees,
+  .event-date,
+  .event-description {
+    font-size: 0.54rem;
+    line-height: 0.82rem;
+  }
+
+  .even-image {
+    max-width: 6rem;
+    max-height: 3.5rem;
+  }
+  .event-info {
+   max-width: 265px;
+    max-height: 64px;
+    padding: 0;
+  }
+
+  .event-attendees,
+  .event-type,
+   .event-description {
+    display: none; /* скрыть описание на мобильных */}
+}
+
+
+
